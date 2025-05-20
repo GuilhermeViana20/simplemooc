@@ -1,0 +1,75 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Simple MOOC - Uma simples plataforma de ensino a distância" />
+    <title>Simple MOOC</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <style>
+        .pure-menu-item a {
+            color: #FFFFFF;
+            font-size: 18px;
+        }
+
+        .pure-menu-item a:hover {
+            color: #000000;
+        }
+
+        .splash {
+            background-color: #181818;
+            color: #FFFFFF;
+            padding: 150px 60px;
+        }
+
+        .splash-contact {
+            background-color: #FFFFFF;
+            color: #FFFFFF;
+            padding: 150px 60px;
+        }
+
+        .splash-text-contact {
+            color: #000000;
+        }
+
+        .content-ribbon {
+            padding: 60px;
+        }
+
+        .footer {
+            background-color: #181818;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="pure-menu pure-menu-horizontal" style="background-color: #181818;">
+        <h4 class="pure-menu-heading">BRAND</h4>
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item">
+                <a href="{% url 'home' %}" class="pure-menu-link">Início</a>
+            </li>
+            <li class="pure-menu-item">
+                <a href="#" class="pure-menu-link">Cursos</a>
+            </li>
+            <li class="pure-menu-item">
+                <a href="{% url 'contact' %}" class="pure-menu-link">Contato</a>
+            </li>
+        </ul>
+    </div>
+    {% block content %}{% endblock %}
+    <div class="footer">
+        Simple MOOC - Uma simples plataforma de ensino a distância
+    </div>
+</div>
+<script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
+</body>
+</html>

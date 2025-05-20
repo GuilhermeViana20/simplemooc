@@ -1,0 +1,15 @@
+
+        .pure-menu-item a {
+            color: #FFFFFF;
+            font-size: 18px;
+        }
+
+        .pure-menu-item a:hover {
+            color: #000000;
+        }
+
+        .splash {
+            background-color: #181818;
+            color: #FFFFFF;
+            padding: 150px 60px;
+        }
