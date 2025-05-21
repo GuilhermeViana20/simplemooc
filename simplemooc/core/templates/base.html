@@ -55,13 +55,13 @@
         <h4 class="pure-menu-heading">BRAND</h4>
         <ul class="pure-menu-list">
             <li class="pure-menu-item">
-                <a href="{% url 'home' %}" class="pure-menu-link">Início</a>
+                <a href="{% url 'core:home' %}" class="pure-menu-link">Início</a>
             </li>
             <li class="pure-menu-item">
-                <a href="#" class="pure-menu-link">Cursos</a>
+                <a href="{% url 'courses:index' %}" class="pure-menu-link">Cursos</a>
             </li>
             <li class="pure-menu-item">
-                <a href="{% url 'contact' %}" class="pure-menu-link">Contato</a>
+                <a href="{% url 'core:contact' %}" class="pure-menu-link">Contato</a>
             </li>
         </ul>
     </div>
