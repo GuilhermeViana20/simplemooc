@@ -3,32 +3,29 @@
 {% load static %}
 
 {% block content %}
-
 <div class="container">
-    <h3 class="py-4 mb-4 border-bottom">
-        Lista de Cursos
-    </h3>
+    <h3 class="py-4 mb-4 border-bottom">Lista de Cursos</h3>
     <div class="album">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 {% for course in courses %}
                 <div class="col">
                     <div class="card shadow-sm">
-                        <span href="">
-                            {% if course.image %}
-                            <img src="{{ course.image.url }}" alt="{{ course.name }}"
-                                class="bd-placeholder-img card-img-top" height="225">
-                            {% else %}
-                            <img src="{% static 'img/course-image.png' %}" alt=""
-                                class="bd-placeholder-img card-img-top" height="225">
-                            {% endif %}
-                        </span>
+                        {% if course.image_safe_url %}
+                        <img src="{{ course.image_safe_url }}" alt="{{ course.name }}"
+                             class="bd-placeholder-img card-img-top" height="225">
+                        {% else %}
+                        <img src="{% static 'img/course-image.png' %}" alt=""
+                             class="bd-placeholder-img card-img-top" height="225">
+                        {% endif %}
                         <div class="card-body">
                             <span class="fw-bold">{{ course.name }}</span>
                             <p class="card-text">{{ course.description|linebreaks }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Acessar</button>
+                                    <a href="{{ course.get_absolute_url }}">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Acessar</button>
+                                    </a>
                                 </div>
                                 <small class="text-body-secondary">9 mins</small>
                             </div>
