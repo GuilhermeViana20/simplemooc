@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('simplemooc.core.urls')),
-    path('index', include('simplemooc.courses.urls')),
+    path('cursos/', include('simplemooc.courses.urls')),
 ]
 
 if settings.DEBUG:

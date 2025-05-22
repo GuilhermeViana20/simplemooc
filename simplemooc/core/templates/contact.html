@@ -1,29 +1,50 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="splash-contact">
-        <div class="pure-g-r">
-            <div class="pure-u-1">
-                <div class="l-box splash-text-contact">
-                    <h1 class="splash-head">
-                        Fale Conosco
-                    </h1>
-                    <h2 class="splash-subhead">
-                        Você pode entrar em contato conosco através do e-mail ou redes sociais.
-                    </h2>
-
-                    <span>
-                        <h3>Links:</h3>
-                        <ul>
-                            <li><strong>E-mail:</strong> <a href="#">contato@simplemooc.org</a></li>
-                            <li><strong>Twitter:</strong> <a href="#">@simplemooc</a></li>
-                        </ul>
-                    </span>
-                    <p>
-                        <a href="#" class="pure-button secondary-button">Saiba mais</a>
-                    </p>
+<div class="container ">
+    <div class="row featurette vh-100">
+        <div class="col-md-5 d-flex align-items-center">
+            <div>
+                <h1 class="featurette-heading fw-normal lh-1">
+                    <span>Fale Conosco</span><br>
+                </h1>
+                <span class="">
+                    O Simple MOOC visa simplificar o ensino a distância, provendo
+                    ferramentas objetivas e de fácil uso para cursos a distância.
+                </span>
+                
+                <p class="lead">
+                    <h4>Contatos</h4>
+                    <ul>
+                        <li><strong>E-mail:</strong> <a href="#">contato@simplemooc.org</a></li>
+                        <li><strong>Twitter:</strong> <a href="#">@simplemooc</a></li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-7  d-flex align-items-center">
+            <div class="w-100">
+                <div class="bd-example-snippet bd-code-snippet bg-secondary-subtle rounded-3 p-5" >
+                    <h4 class="mb-4">Formulário de Contato</h4>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="name" placeholder="Nome Sobrenome">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" placeholder="exemplo@gmail.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Telefone</label>
+                        <input type="text" class="form-control" id="phone" placeholder="(XX) 9XXXX-XXXX">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descrição</label>
+                        <textarea class="form-control" id="description" rows="3"></textarea>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
