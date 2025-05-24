@@ -1,15 +1,511 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-        .pure-menu-item a {
-            color: #FFFFFF;
-            font-size: 18px;
-        }
+/* Estilos para a seção hero (topo da página) */
+.hero-section {
+    background: linear-gradient(to right, #4a90e2, #7f8c8d);
+    color: white;
+    padding: 8rem 0;
+    animation: fadeIn 1s ease-out;
+}
 
-        .pure-menu-item a:hover {
-            color: #000000;
-        }
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
 
-        .splash {
-            background-color: #181818;
-            color: #FFFFFF;
-            padding: 150px 60px;
-        }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-section h1 {
+    font-size: 3.8rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.hero-section .lead {
+    font-size: 1.5rem;
+    font-weight: 400;
+    max-width: 700px;
+    margin: 0 auto 2.5rem auto;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Estilos para os "botões" */
+.btn-primary {
+    background-color: #4a90e2;
+    border-color: #4a90e2;
+    border-radius: 50px;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #357abd;
+    border-color: #357abd;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos para as seções de "featurette" */
+.featurette-divider {
+    margin: 5rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.37);
+}
+
+.featurette {
+    padding: 4rem 0;
+    align-items: center;
+}
+
+.featurette-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #333;
+}
+
+.featurette-heading .text-body-secondary {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #7f8c8d !important;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.featurette .lead {
+    font-size: 1.15rem;
+    color: #555;
+    margin-top: 1.5rem;
+}
+
+.featurette-image {
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.featurette-image:hover {
+    transform: scale(1.02);
+}
+
+/* Nova classe para o fundo azul escuro do navbar e footer */
+.bg-dark-blue {
+    background-color: #213B5C !important;
+}
+
+/* Estilos para o título da lista de cursos */
+.page-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+    text-align: left;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para os cards de curso */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    object-fit: cover;
+    height: 225px;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.75rem;
+}
+
+.card-text {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.btn-access {
+    background-color: #4a90e2;
+    border-color: #4a90e2;
+    color: white;
+    border-radius: 8px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-access:hover {
+    background-color: #357abd;
+    border-color: #357abd;
+    transform: translateY(-2px);
+}
+
+.course-duration {
+    font-size: 0.75rem;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+/* Estilos para a mensagem de "nenhum curso disponível" */
+.no-courses-message {
+    background-color: #e9ecef;
+    padding: 3rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 3rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.no-courses-message .lead {
+    font-size: 1.3rem;
+    color: #555;
+}
+
+/* Estilos para a seção principal de detalhes do curso (Hero) */
+.course-hero-wrapper {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 7rem 0;
+    margin-bottom: 3rem;
+    animation: fadeIn 1s ease-out;
+    position: relative;
+    color: white;
+}
+
+.course-hero-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+.course-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 15px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.course-hero-content h1 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: white;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+.course-hero-content .lead {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Seção "Sobre o curso" */
+.about-section {
+    padding: 4rem;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    margin-top: 3rem;
+    animation: fadeIn 1s ease-out;
+    border-left: 5px solid #4a90e2;
+    padding-left: 2.5rem;
+}
+
+.about-section h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.about-section .lead {
+    font-size: 1.25rem;
+    color: #555;
+    line-height: 1.8;
+}
+
+.about-image {
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.about-image:hover {
+    transform: scale(1.02);
+}
+
+/* Estilos para a seção de contato principal */
+.contact-section {
+    padding: 5rem 0;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-info-block {
+    padding: 3rem;
+    text-align: left;
+}
+
+.contact-info-block h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info-block .lead-description {
+    font-size: 1.15rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.contact-info-block h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.contact-info-block ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-info-block ul li {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.contact-info-block ul li strong {
+    color: #333;
+}
+
+.contact-info-block ul li a {
+    color: #4a90e2;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info-block ul li a:hover {
+    color: #357abd;
+    text-decoration: underline;
+}
+
+/* Estilos para o formulário de contato */
+.contact-form-block {
+    background-color: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    animation: fadeInRight 0.8s ease-out;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.contact-form-block h4 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e0e0e0;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 0.25rem rgba(74, 144, 226, 0.25);
+}
+
+.btn-submit {
+    background-color: #4a90e2;
+    border-color: #4a90e2;
+    color: white;
+    border-radius: 50px;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: auto;
+    display: inline-block;
+}
+
+.btn-submit:hover {
+    background-color: #357abd;
+    border-color: #357abd;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.alert-success {
+    border-radius: 8px;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.alert-success .alert-heading {
+    color: #155724;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.text-danger {
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+/* Estilos para o footer */
+.footer {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 3rem 0;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 992px) {
+    .course-hero-content h1 {
+        font-size: 3.5rem;
+    }
+
+    .course-hero-content .lead {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .course-hero-wrapper {
+        padding: 5rem 0;
+    }
+
+    .course-hero-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .course-hero-content .lead {
+        font-size: 1rem;
+    }
+}

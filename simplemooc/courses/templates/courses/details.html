@@ -3,38 +3,31 @@
 {% load static %}
 
 {% block content %}
-<div class="container my-5">
-    <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
-        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-            <h1 class="display-4 fw-bold lh-1 text-body-emphasis">{{ course.name }}</h1>
-            <p class="lead">
-                {{ course.description | linebreaks }}
-            </p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-                <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Inscreva-se</button>
-            </div>
-        </div>
-        <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-            {% if course.image_safe_url %}
-            <img src="{{ course.image_safe_url }}" alt="{{ course.name }}" class="rounded" width="720">
-            {% else %}
-            <img src="{% static 'img/course-image.png' %}" alt="" class="rounded" width="720">
-            {% endif %}
+<div class="course-hero-wrapper" style="background-image: url('{% if course.image_safe_url %}{{ course.image_safe_url }}{% else %}{% static 'img/course-image.png' %}{% endif %}');">
+    <div class="course-hero-content">
+        <h1>Inteligência Artificial para Pequenas e Médias Empresas</h1>
+        <p class="lead">
+            Neste curso, você aprenderá como automatizar suas tarefas,
+            tomar decisões mais eficientes e criar soluções inovadoras
+            para seus clientes.
+        </p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4 mb-lg-3">
+            <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Inscreva-se</button>
         </div>
     </div>
 </div>
 
-<div class="container col-xxl-8 px-4 py-5">
+<div class="container col-xxl-8 px-4 py-5 my-5 about-section">
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
         <div class="col-10 col-sm-8 col-lg-6">
             {% if course.image_safe_url %}
-            <img src="{{ course.image_safe_url }}" alt="{{ course.name }}" class="rounded" width="585" height="370">
+            <img src="{{ course.image_safe_url }}" alt="{{ course.name }}" class="about-image" width="585" height="370">
             {% else %}
-            <img src="{% static 'img/course-image.png' %}" alt="" class="rounded" width="585" height="370">
+            <img src="{% static 'img/course-image.png' %}" alt="" class="about-image" width="585" height="370">
             {% endif %}
         </div>
         <div class="col-lg-6">
-            <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Sobre o curso</h1>
+            <h2 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Sobre o curso</h2>
             <p class="lead">
                 {{ course.about | linebreaks }}
             </p>

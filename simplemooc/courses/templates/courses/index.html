@@ -3,43 +3,42 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <h3 class="py-4 mb-4 border-bottom">Lista de Cursos</h3>
-    <div class="album vh-100">
-        <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                {% for course in courses %}
-                <div class="col">
-                    <div class="card shadow-sm">
-                        {% if course.image_safe_url %}
-                        <img src="{{ course.image_safe_url }}" alt="{{ course.name }}"
-                             class="bd-placeholder-img card-img-top" height="225">
-                        {% else %}
-                        <img src="{% static 'img/course-image.png' %}" alt=""
-                             class="bd-placeholder-img card-img-top" height="225">
-                        {% endif %}
-                        <div class="card-body">
-                            <span class="fw-bold">{{ course.name }}</span>
-                            <p class="card-text">{{ course.description|linebreaks }}</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a href="{{ course.get_absolute_url }}">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Acessar</button>
-                                    </a>
-                                </div>
-                                <small class="text-body-secondary">9 mins</small>
+<div class="container py-5">
+    <h3 class="page-title">Lista de Cursos</h3>
+    <div class="album">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+            {% for course in courses %}
+            <div class="col">
+                <div class="card">
+                    {% if course.image_safe_url %}
+                    <img src="{{ course.image_safe_url }}" alt="{{ course.name }}"
+                        class="bd-placeholder-img card-img-top" height="225">
+                    {% else %}
+                    <img src="{% static 'img/course-image.png' %}" alt="" class="bd-placeholder-img card-img-top"
+                        height="225">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">Python para Dev</h5>
+                        <p class="card-text">
+                            Aprenda Python do básico ao avançado, com foco em desenvolvimento web e automação.
+                            Ideal para iniciantes e para quem busca aprimorar suas habilidades.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{{ course.get_absolute_url }}" class="btn btn-access">Acessar</a>
                             </div>
+                            <small class="course-duration">9 horas de conteúdo</small>
                         </div>
                     </div>
                 </div>
-                {% empty %}
+            </div>
+            {% empty %}
                 <div class="w-100 bg-body-tertiary p-5 rounded">
                     <div class="">
                         <p class="lead">Nenhum curso está disponível na plataforma.</p>
                     </div>
                 </div>
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

@@ -1,79 +1,69 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container ">
-    <div class="row featurette vh-100">
+<div class="container contact-section">
+    <div class="row w-100">
         <div class="col-md-5 d-flex align-items-center">
-            <div>
-                <h1 class="featurette-heading fw-normal lh-1">
-                    <span>Fale Conosco</span><br>
-                </h1>
-                <span class="">
+            <div class="contact-info-block">
+                <h1>Fale Conosco</h1>
+                <p class="lead-description">
                     O Simple MOOC visa simplificar o ensino a distância, provendo
                     ferramentas objetivas e de fácil uso para cursos a distância.
-                </span>
+                </p>
 
-                <p class="lead">
                 <h4>Contatos</h4>
                 <ul>
-                    <li><strong>E-mail:</strong> <a href="#">contato@simplemooc.org</a></li>
-                    <li><strong>Twitter:</strong> <a href="#">@simplemooc</a></li>
+                    <li><strong>E-mail:</strong> <a href="mailto:contato@simplemooc.org">contato@simplemooc.org</a></li>
+                    <li><strong>Twitter:</strong> <a href="https://twitter.com/simplemooc"
+                            target="_blank">@simplemooc</a></li>
                 </ul>
-                </p>
             </div>
         </div>
-        <div class="col-md-7  d-flex align-items-center">
-            <div class="w-100">
-                <div class="col d-flex align-items-center">
-                    <div class="w-100">
-                        <div class="bd-example-snippet bd-code-snippet bg-secondary-subtle rounded-3 p-5">
-                            <h4 class="mb-4">Formulário de Contato</h4>
+        <div class="col-md-7 d-flex align-items-center">
+            <div class="contact-form-block w-100">
+                <h4>Formulário de Contato</h4>
 
-                            {% if is_valid %}
-                            <div class="alert alert-success" role="alert">
-                                <h4 class="alert-heading">Mensagem enviada com sucesso!</h4>
-                                <p>Obrigado por entrar em contato. Responderemos o mais breve possível.</p>
-                            </div>
-                            {% endif %}
+                {% if is_valid %}
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Mensagem enviada com sucesso!</h4>
+                    <p>Obrigado por entrar em contato. Responderemos o mais breve possível.</p>
+                </div>
+                {% endif %}
 
-                            <form action="#contato" method="post" class="row">
-                                {% csrf_token %}
-                                <div class="mb-3">
-                                    <label for="{{ form.name.id_for_label }}" class="form-label">Nome</label>
+                <form action="#contato" method="post" class="row g-3">
+                    {% csrf_token %}
+                    <div class="col-12">
+                        <label for="{{ form.name.id_for_label }}" class="form-label">Nome</label>
                                     {{ form.name }}
                                     {% for error in form.name.errors %}
                                     <div class="text-danger">{{ error }}</div>
                                     {% endfor %}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="{{ form.email.id_for_label }}" class="form-label">E-mail</label>
+                    </div>
+                    <div class="col-12">
+                        <label for="{{ form.email.id_for_label }}" class="form-label">E-mail</label>
                                     {{ form.email }}
                                     {% for error in form.email.errors %}
                                     <div class="text-danger">{{ error }}</div>
                                     {% endfor %}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="{{ form.phone.id_for_label }}" class="form-label">Telefone</label>
+                    </div>
+                    <div class="col-12">
+                        <label for="{{ form.phone.id_for_label }}" class="form-label">Telefone</label>
                                     {{ form.phone }}
                                     {% for error in form.phone.errors %}
                                     <div class="text-danger">{{ error }}</div>
                                     {% endfor %}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="{{ form.description.id_for_label }}" class="form-label">Mensagem</label>
+                    </div>
+                    <div class="col-12">
+                        <label for="{{ form.description.id_for_label }}" class="form-label">Mensagem</label>
                                     {{ form.description }}
                                     {% for error in form.description.errors %}
                                     <div class="text-danger">{{ error }}</div>
                                     {% endfor %}
-                                </div>
-                                <div>
-                                    <button type="submit"
-                                        class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Enviar</button>
-                                </div>
-                            </form>
-                        </div>
                     </div>
-                </div>
+                    <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-submit">Enviar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
