@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
+    'crispy_forms',
 
     'simplemooc.core',
+    'simplemooc.accounts',
     'simplemooc.courses',
 ]
 
@@ -121,6 +124,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'simplemooc', 'media')
@@ -134,3 +140,8 @@ EMAIL_HOST_PASSWORD = 'senha'
 EMAIL_PORT = 587
 
 CONTACT_EMAIL = 'contato@simplemooc.com'
+
+# Auth
+LOGIN_URL = 'accounts:login'
+LOGIN_REDIRECT_URL = 'core:home'
+LOGOUT_URL = 'accounts:logout'

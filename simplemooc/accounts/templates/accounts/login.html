@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container">
+    <div class="login-container">
+        <h2>Acessar Conta</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% for field in form %}
+            <div class="mb-3 text-start">
+                {{ field.label_tag }}
+                {% render_field field class="form-control" placeholder=field.label %}
+                {{ field.errors }}
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary w-100 py-2 mt-3">Entrar</button>
+            <a href="#" class="forgot-password">Esqueceu a senha?</a>
+        </form>
+
+        <span>Não é cadastrado? </span><a href="{% url 'accounts:register' %}">Cadastre-se</a>
+    </div>
+</div>
+{% endblock %}
