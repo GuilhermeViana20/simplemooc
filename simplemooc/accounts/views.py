@@ -1,20 +1,25 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.conf import settings
-
-# def login(request):
-#     return render(request, 'accounts/login.html')
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from django.contrib.auth import authenticate, login
+from .forms import RegisterForm
 
 def register(request):
-    template_name = 'accounts/register.html'
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect(settings.LOGIN_URL)  # Redirect to login page after registration
+            user = form.save()
+            user = authenticate(
+                username=user.username,
+                password=form.cleaned_data['password1']
+            )
+            login(request, user)
+            return redirect('core:home')
     else:
-        form = UserCreationForm()
-    context = {
-        'form': form
-    }
-    return render(request, template_name, context)
+        form = RegisterForm()
+    return render(request, 'accounts/register.html', {'form': form})
+
+class RegisterView(CreateView):
+    form_class = RegisterForm
+    template_name = 'accounts/register.html'
+    success_url = reverse_lazy('accounts:login')
