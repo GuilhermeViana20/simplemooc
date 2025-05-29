@@ -7,8 +7,11 @@
             </div>
 
             <div class="profile-picture-container">
-                <img src="{% static 'img/profile.jpg' %}" alt="Foto de Perfil do Guilherme Viana"
-                    class="profile-picture" />
+                {% if user.image %}
+                    <img src="{{ user.image.url }}" alt="Foto de Perfil" class="profile-picture">
+                {% else %}
+                    <img src="{% static 'img/profile.jpg' %}" alt="Foto de Perfil Padrão" class="profile-picture">
+                {% endif %}
             </div>
 
             {% block profile_content %}

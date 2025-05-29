@@ -130,6 +130,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'simplemooc', 'media')
+MEDIA_URL = '/media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'Nome <email@gmail.com>'

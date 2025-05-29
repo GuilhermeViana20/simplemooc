@@ -17,7 +17,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField('Ativo', blank=True, default=True)
     is_staff = models.BooleanField('Membro da Equipe', blank=True, default=False)
     date_joined = models.DateTimeField('Data de Registro', auto_now_add=True)
-    image = models.ImageField('Imagem', upload_to='users/%Y/%m/%d', blank=True, null=True)
+    image = models.ImageField('Imagem', upload_to='profile_pics/', blank=True, null=True)
 
     objects = UserManager()
 

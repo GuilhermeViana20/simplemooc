@@ -12,7 +12,7 @@ def profile(request):
 
 def register(request):
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
+        form = RegisterForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
             user = authenticate(
@@ -21,6 +21,8 @@ def register(request):
             )
             login(request, user)
             return redirect('core:home')
+        else:
+            print("Erros do formulário:", form.errors)
     else:
         form = RegisterForm()
     return render(request, 'accounts/register.html', {'form': form})
@@ -34,7 +36,7 @@ class RegisterView(CreateView):
 def edit(request):
     context = {}
     if request.method == 'POST':
-        form = EditForm(request.POST, instance=request.user)
+        form = EditForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
             form = EditForm(instance=request.user)

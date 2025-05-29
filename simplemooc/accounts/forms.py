@@ -4,14 +4,11 @@ from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.apps import apps
 
-# User = get_user_model()
-# print(f"DEBUG: O modelo de usuário carregado é: {User}")
-
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(
         label='Senha',
         widget=forms.PasswordInput,
-        validators=[validate_password] # Opcional: Adicionar validadores de senha do Django
+        validators=[validate_password]
     )
     password2 = forms.CharField(
         label='Confirme a Senha',
@@ -21,10 +18,11 @@ class RegisterForm(forms.ModelForm):
     name = forms.CharField(max_length=100, label='Nome', required=False)
     surname = forms.CharField(max_length=100, label='Sobrenome', required=False)
     email = forms.EmailField(label='E-mail')
+    image = forms.ImageField(label='Imagem', required=False)
 
     class Meta:
         model = apps.get_model('accounts', 'User')
-        fields = ('username', 'name', 'surname', 'email')
+        fields = ('username', 'name', 'surname', 'email', 'image')
 
     def clean_password2(self):
         password = self.cleaned_data.get('password')
@@ -46,6 +44,8 @@ class RegisterForm(forms.ModelForm):
         user.email = self.cleaned_data['email']
         user.name = self.cleaned_data.get('name', '')
         user.surname = self.cleaned_data.get('surname', '')
+        user.image = self.cleaned_data.get('image', None)
+
         user.set_password(self.cleaned_data['password'])
         if commit:
             user.save()
@@ -63,9 +63,10 @@ class EditForm(forms.ModelForm):
             raise forms.ValidationError("Este e-mail já está em uso.")
         return email
 
+    image = forms.ImageField(label='Imagem', required=False)
     class Meta:
         model = apps.get_model('accounts', 'User')
-        fields = ['name', 'surname', 'username', 'email']
+        fields = ['name', 'surname', 'username', 'email', 'image']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'surname': forms.TextInput(attrs={'class': 'form-control'}),
