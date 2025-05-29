@@ -17,7 +17,7 @@ def register(request):
             user = form.save()
             user = authenticate(
                 username=user.username,
-                password=form.cleaned_data['password1']
+                password=form.cleaned_data['password']
             )
             login(request, user)
             return redirect('core:home')

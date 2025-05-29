@@ -15,10 +15,10 @@
             <div class="profile-content">
                 <div class="user-info">
                     <h3>
-                        {{ user.first_name|capfirst }} {{ user.last_name|capfirst }}
+                        {{ user.get_full_name|capfirst }} {{ user.last_name|capfirst }}
                         <i class="bi bi-patch-check-fill"></i>
                     </h3>
-                    <p class="text-muted">@{{ user.username }}</p>
+                    <p class="text-muted">@{{ user.get_shot_name }}</p>
                 </div>
                 <div class="contact-info">
                     <a href="mailto:{{ user.email }}" class="send-message">

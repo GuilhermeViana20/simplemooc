@@ -1,29 +1,52 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import get_user_model
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
+from django.apps import apps
 
-User = get_user_model()
+# User = get_user_model()
+# print(f"DEBUG: O modelo de usuário carregado é: {User}")
 
-class RegisterForm(UserCreationForm):
-    first_name = forms.CharField(max_length=100, label='Nome', required=False)
-    last_name = forms.CharField(max_length=100, label='Sobrenome', required=False)
+class RegisterForm(forms.ModelForm):
+    password = forms.CharField(
+        label='Senha',
+        widget=forms.PasswordInput,
+        validators=[validate_password] # Opcional: Adicionar validadores de senha do Django
+    )
+    password2 = forms.CharField(
+        label='Confirme a Senha',
+        widget=forms.PasswordInput
+    )
+
+    name = forms.CharField(max_length=100, label='Nome', required=False)
+    surname = forms.CharField(max_length=100, label='Sobrenome', required=False)
     email = forms.EmailField(label='E-mail')
 
-    class Meta(UserCreationForm.Meta):
-        fields = UserCreationForm.Meta.fields + ('first_name', 'last_name', 'email')
+    class Meta:
+        model = apps.get_model('accounts', 'User')
+        fields = ('username', 'name', 'surname', 'email')
+
+    def clean_password2(self):
+        password = self.cleaned_data.get('password')
+        password2 = self.cleaned_data.get('password2')
+        if password and password2 and password != password2:
+            raise forms.ValidationError('As senhas não coincidem.')
+        return password2
 
     def clean_email(self):
-        email = self.cleaned_data['email']
-        if User.objects.filter(email=email).exists():
-            raise forms.ValidationError("Este e-mail já está em uso.")
+        email = self.cleaned_data.get('email')
+        if not email:
+            raise forms.ValidationError("O campo E-mail é obrigatório.")
+        if self.Meta.model.objects.filter(email=email).exists():
+            raise forms.ValidationError('Este e-mail já está em uso.')
         return email
 
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
-        user.first_name = self.cleaned_data.get('first_name', '')
-        user.last_name = self.cleaned_data.get('last_name', '')
-        
+        user.name = self.cleaned_data.get('name', '')
+        user.surname = self.cleaned_data.get('surname', '')
+        user.set_password(self.cleaned_data['password'])
         if commit:
             user.save()
         return user
@@ -35,16 +58,16 @@ class EditForm(forms.ModelForm):
         if not email:
             raise forms.ValidationError("O campo E-mail é obrigatório.")
 
-        queryset = User.objects.filter(email=email).exclude(pk=self.instance.pk)
+        queryset = self.Meta.model.objects.filter(email=email).exclude(pk=self.instance.pk)
         if queryset.exists():
             raise forms.ValidationError("Este e-mail já está em uso.")
         return email
 
     class Meta:
-        model = User
-        fields = ['first_name', 'last_name', 'username', 'email']
+        model = apps.get_model('accounts', 'User')
+        fields = ['name', 'surname', 'username', 'email']
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'surname': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
         }
