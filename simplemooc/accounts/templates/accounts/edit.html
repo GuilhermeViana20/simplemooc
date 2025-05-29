@@ -1,0 +1,52 @@
+{% extends "accounts/profile.html" %}
+{% load static %}
+{% load widget_tweaks %}
+    
+{% block profile_content %}
+<div class="p-4 mt-5">
+    <form method="POST">
+        {% csrf_token %}
+        {% if success %}
+            <div id="success-alert" class="alert alert-success" role="alert">
+                <span>Os dados foram alterados com sucesso!</span>
+            </div>
+        {% endif %}
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="row">
+            {% for field in form %}
+                <div class="col-6">
+                    <div class="mb-3 text-start">
+                        {{ field.label_tag }}
+                        {% render_field field class="form-control" placeholder=field.label %}
+                        {% if field.errors %}
+                            <div class="text-danger">
+                                {% for error in field.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary w-100 py-2 mt-3">Atualizar Perfil</button>
+    </form>
+</div>
+
+<script>
+    const successAlert = document.getElementById('success-alert');
+
+    if (successAlert) {
+        setTimeout(() => {
+            successAlert.style.display = 'none';
+        }, 3000);
+    }
+</script>
+{% endblock %}

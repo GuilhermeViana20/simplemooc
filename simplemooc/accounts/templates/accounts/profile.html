@@ -1,0 +1,118 @@
+{% extends "base.html" %} {% load widget_tweaks %} {% load static %} {% block content %}
+<div class="container my-5">
+    <div class="d-flex justify-content-center">
+        <div class="profile-card">
+            <div class="cover-image-container">
+                <img src="{% static 'img/cover.jpg' %}" alt="Imagem de Capa" class="cover-image" />
+            </div>
+
+            <div class="profile-picture-container">
+                <img src="{% static 'img/profile.jpg' %}" alt="Foto de Perfil do Guilherme Viana"
+                    class="profile-picture" />
+            </div>
+
+            {% block profile_content %}
+            <div class="profile-content">
+                <div class="user-info">
+                    <h3>
+                        {{ user.first_name|capfirst }} {{ user.last_name|capfirst }}
+                        <i class="bi bi-patch-check-fill"></i>
+                    </h3>
+                    <p class="text-muted">@{{ user.username }}</p>
+                </div>
+                <div class="contact-info">
+                    <a href="mailto:{{ user.email }}" class="send-message">
+                        <img src="{% static 'img/google.png' %}" alt="Google Logo" class="google-icon-img">
+                        <span>{{ user.email }}</span>
+                    </a>
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+    <h3 class="mt-4 mb-3" style="color: var(--bs-blue-dark);">Cursos em Progresso</h3>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div class="col">
+            <a href="" class="course-card-link">
+                <div class="card course-card">
+                    <img src="https://clarify.com.br/blog/wp-content/uploads/2024/04/adobestock_813634501.jpeg" class="card-img-top"
+                        alt="Imagem do Curso HTML">
+                    <div class="card-body">
+                        <h5 class="card-title">HTML Essencial</h5>
+                        <p class="card-text">Aprenda os fundamentos do HTML para construir páginas web.</p>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75"
+                                aria-valuemin="0" aria-valuemax="100">75%</div>
+                        </div>
+                        <div class="course-info">
+                            <span><i class="far fa-clock"></i> 10h de conteúdo</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="" class="course-card-link">
+                <div class="card course-card">
+                    <img src="https://clarify.com.br/blog/wp-content/uploads/2024/04/adobestock_813634501.jpeg" class="card-img-top"
+                        alt="Imagem do Curso CSS">
+                    <div class="card-body">
+                        <h5 class="card-title">CSS Avançado</h5>
+                        <p class="card-text">Estilize suas páginas com CSS para um design responsivo.</p>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50"
+                                aria-valuemin="0" aria-valuemax="100">50%</div>
+                        </div>
+                        <div class="course-info">
+                            <span><i class="far fa-clock"></i> 15h de conteúdo</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="" class="course-card-link">
+                <div class="card course-card">
+                    <img src="https://clarify.com.br/blog/wp-content/uploads/2024/04/adobestock_813634501.jpeg" class="card-img-top"
+                        alt="Imagem do Curso JavaScript">
+                    <div class="card-body">
+                        <h5 class="card-title">JavaScript Moderno</h5>
+                        <p class="card-text">Torne suas páginas interativas com JavaScript.</p>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                                aria-valuemin="0" aria-valuemax="100">25%</div>
+                        </div>
+                        <div class="course-info">
+                            <span><i class="far fa-clock"></i> 20h de conteúdo</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <h3 class="mt-4 mb-3" style="color: var(--bs-blue-dark);">Cursos Concluídos</h3>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div class="col">
+            <a href="" class="course-card-link">
+                <div class="card course-card">
+                    <img src="https://clarify.com.br/blog/wp-content/uploads/2024/04/adobestock_813634501.jpeg" class="card-img-top"
+                        alt="Imagem do Curso Python">
+                    <div class="card-body">
+                        <h5 class="card-title">Introdução ao Python</h5>
+                        <p class="card-text">Aprenda a programar com uma das linguagens mais populares.</p>
+                        <div class="progress mb-2">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100">100% Concluído</div>
+                        </div>
+                        <div class="course-info">
+                            <span><i class="far fa-clock"></i> 25h de conteúdo</span>
+                            <button class="btn btn-success btn-sm" disabled><i class="fas fa-check"></i> Concluído</button>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

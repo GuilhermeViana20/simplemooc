@@ -24,7 +24,7 @@
                 <h4>Formulário de Contato</h4>
 
                 {% if is_valid %}
-                <div class="alert alert-success" role="alert">
+                <div id="success-alert" class="alert alert-success" role="alert">
                     <h4 class="alert-heading">Mensagem enviada com sucesso!</h4>
                     <p>Obrigado por entrar em contato. Responderemos o mais breve possível.</p>
                 </div>
@@ -68,4 +68,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    const successAlert = document.getElementById('success-alert');
+
+    if (successAlert) {
+        setTimeout(() => {
+            successAlert.style.display = 'none';
+        }, 5000);
+    }
+</script>
 {% endblock %}
