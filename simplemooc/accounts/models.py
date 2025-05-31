@@ -3,13 +3,14 @@ import re
 from django.db import models
 from django.core import validators
 from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin, UserManager)
+from django.conf import settings
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField('Nome de Usuário', max_length=30, unique=True,
         validators=[validators.RegexValidator(re.compile(r'^[\w.@+-]+$'),
-        'O nome de usuário só pode conter letras, números e os seguintes caracteres: @/./+/-/_.',
-        'invalid'
-    )]
+            'O nome de usuário só pode conter letras, números e os seguintes caracteres: @/./+/-/_.',
+            'invalid'
+        )]
     )
     email = models.EmailField('E-mail', unique=True)
     name = models.CharField('Nome', max_length=30, blank=True)
@@ -39,3 +40,22 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name = 'Usuário'
         verbose_name_plural = 'Usuários'
         ordering = ['username']
+
+class PasswordReset(models.Model):
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        verbose_name='Usuário',
+        on_delete=models.CASCADE
+    )
+    key = models.CharField('Chave', max_length=40, unique=True)
+    created_at = models.DateTimeField('Criado em', auto_now_add=True)
+    confirmed = models.BooleanField('Confirmado', default=False, blank=True)
+
+    def __str__(self):
+        return '{0} em {1}'.format(self.user, self.created_at)
+
+    class Meta:
+        verbose_name = 'Redefinição de Senha'
+        verbose_name_plural = 'Redefinições de Senha'
+        ordering = ['-created_at']
